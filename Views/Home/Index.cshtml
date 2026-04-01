@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Sistema de Cifrado con Token</h1>
+    <p>Conexión exitosa con SQL Server</p>
+</div>
+
+<hr />
+
+<div class="row text-center mb-4">
+    <div class="col-md-4">
+        <h3>Total de usuarios</h3>
+        <p>@ViewBag.TotalUsuarios</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Total de mensajes</h3>
+        <p>@ViewBag.TotalMensajes</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Total de historial</h3>
+        <p>@ViewBag.TotalHistorial</p>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-md-3 mb-2">
+        <a class="btn btn-primary w-100" href="/Usuarios/Registro">Registrar usuario</a>
+    </div>
+    <div class="col-md-3 mb-2">
+        <a class="btn btn-success w-100" href="/Mensajes/Crear">Crear mensaje</a>
+    </div>
+    <div class="col-md-3 mb-2">
+        <a class="btn btn-warning w-100" href="/Mensajes/Lista">Ver mensajes</a>
+    </div>
+    <div class="col-md-3 mb-2">
+        <a class="btn btn-info w-100" href="/Mensajes/ConsultarToken">Consultar token</a>
+    </div>
+</div>
+
+<div class="row text-center mt-2">
+    <div class="col-md-6 mb-2">
+        <a class="btn btn-secondary w-100" href="/Historial/Lista">Ver historial completo</a>
+    </div>
+    <div class="col-md-6 mb-2">
+        <a class="btn btn-dark w-100" href="/Historial/Lista?idUsuarioPropietario=4">Historial del propietario 4</a>
+    </div>
+</div>

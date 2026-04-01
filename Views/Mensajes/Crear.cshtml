@@ -1,0 +1,28 @@
+﻿@model SistemaCifradoToken.Models.Mensaje
+
+@{
+    ViewData["Title"] = "Crear Mensaje";
+}
+
+<h2>Crear Mensaje Cifrado</h2>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Crear" method="post">
+    <div class="mb-3">
+        <label class="form-label">Id del usuario propietario</label>
+        <input asp-for="IdUsuarioPropietario" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Texto a cifrar</label>
+        <input asp-for="TextoCifrado" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Etiqueta</label>
+        <input asp-for="Etiqueta" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar mensaje</button>
+</form>

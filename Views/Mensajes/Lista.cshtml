@@ -1,0 +1,57 @@
+﻿@model List<SistemaCifradoToken.Models.Mensaje>
+
+@{
+    ViewData["Title"] = "Lista de Mensajes";
+}
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
+<h2>Lista de Mensajes</h2>
+
+<div class="mb-3">
+    <a class="btn btn-success" href="/Mensajes/Crear">Nuevo mensaje</a>
+    <a class="btn btn-info" href="/Mensajes/ConsultarToken">Consultar token</a>
+    <a class="btn btn-secondary" href="/Historial/Lista">Ver historial</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>IdMensaje</th>
+            <th>IdUsuarioPropietario</th>
+            <th>TextoCifrado</th>
+            <th>Token</th>
+            <th>Etiqueta</th>
+            <th>Estado</th>
+            <th>FechaCreacion</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mensaje in Model)
+        {
+            <tr>
+                <td>@mensaje.IdMensaje</td>
+                <td>@mensaje.IdUsuarioPropietario</td>
+                <td>@mensaje.TextoCifrado</td>
+                <td>@mensaje.Token</td>
+                <td>@mensaje.Etiqueta</td>
+                <td>@mensaje.Estado</td>
+                <td>@mensaje.FechaCreacion</td>
+                <td>
+                    <form asp-action="Eliminar" asp-route-id="@mensaje.IdMensaje" method="post" onsubmit="return confirm('¿Desea realizar eliminación lógica?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar lógico</button>
+                    </form>
+                    <div class="mt-1">
+                        <a class="btn btn-sm btn-dark" href="/Historial/Lista?idUsuarioPropietario=@mensaje.IdUsuarioPropietario">Historial dueño</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

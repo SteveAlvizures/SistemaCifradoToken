@@ -1,0 +1,46 @@
+﻿@model List<SistemaCifradoToken.Models.HistorialAcceso>
+
+@{
+    ViewData["Title"] = "Historial de Accesos";
+    var filtro = Context.Request.Query["idUsuarioPropietario"].ToString();
+}
+
+<h2>Historial de Accesos</h2>
+
+<form method="get" asp-controller="Historial" asp-action="Lista" class="row g-2 mb-3">
+    <div class="col-md-4">
+        <input type="text" name="idUsuarioPropietario" value="@filtro" class="form-control" placeholder="Filtrar por IdUsuarioPropietario" />
+    </div>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <a href="/Historial/Lista" class="btn btn-secondary">Ver todos</a>
+    </div>
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>IdHistorial</th>
+            <th>IdMensaje</th>
+            <th>IdUsuarioAccion</th>
+            <th>TokenIngresado</th>
+            <th>Resultado</th>
+            <th>Motivo</th>
+            <th>FechaHora</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IdHistorial</td>
+                <td>@item.IdMensaje</td>
+                <td>@item.IdUsuarioAccion</td>
+                <td>@item.TokenIngresado</td>
+                <td>@item.Resultado</td>
+                <td>@item.Motivo</td>
+                <td>@item.FechaHora</td>
+            </tr>
+        }
+    </tbody>
+</table>

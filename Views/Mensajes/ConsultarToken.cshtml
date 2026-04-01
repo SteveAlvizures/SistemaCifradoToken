@@ -1,0 +1,40 @@
+﻿@model SistemaCifradoToken.Models.ConsultaTokenViewModel
+
+@{
+    ViewData["Title"] = "Consultar por Token";
+}
+
+<h2>Consultar Mensaje por Token</h2>
+
+<form asp-action="ConsultarToken" method="post">
+    <div class="mb-3">
+        <label asp-for="IdUsuarioAccion" class="form-label">Id del usuario que consulta</label>
+        <input asp-for="IdUsuarioAccion" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Token" class="form-label">Token</label>
+        <input asp-for="Token" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Consultar</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model?.MensajeError))
+{
+    <div class="alert alert-danger mt-3">
+        @Model.MensajeError
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model?.TextoDescifrado))
+{
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4>Resultado de la consulta</h4>
+            <p><strong>Texto descifrado:</strong> @Model.TextoDescifrado</p>
+            <p><strong>Usuario propietario:</strong> @Model.NombreUsuarioPropietario</p>
+            <p><strong>Fecha y hora del intento:</strong> @Model.FechaHoraIntento</p>
+        </div>
+    </div>
+}
